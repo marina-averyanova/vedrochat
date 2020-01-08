@@ -1,5 +1,6 @@
 package com.example.vedrochat.models
 
+import com.example.vedrochat.utils.Utils
 import java.util.Date
 
 data class User (
@@ -24,11 +25,11 @@ data class User (
 
         fun makeUser(fullName: String?): User {
             lastId++
-            val nameParts: List<String>? = fullName?.split(" ")
+            val nameParts = Utils.parseFullName(fullName)
             return User(
                 id = "$lastId",
-                firstName = nameParts?.getOrNull(0),
-                lastName = nameParts?.getOrNull(1)
+                firstName = nameParts.first,
+                lastName = nameParts.second
             )
         }
     }
